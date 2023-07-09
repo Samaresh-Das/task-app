@@ -1,4 +1,4 @@
-import { types, onSnapshot } from "mobx-state-tree";
+import { types, onSnapshot, destroy } from "mobx-state-tree";
 
 const Todo = types
   .model("Todo", {
@@ -11,6 +11,10 @@ const Todo = types
     toggle(newStatus: string) {
       console.log(newStatus);
       self.status = newStatus;
+    },
+    edit(newTitle: string, newDesc: string) {
+      self.title = newTitle;
+      self.desc = newDesc;
     },
   }));
 
@@ -29,6 +33,21 @@ const Store = types
           status,
         });
         self.todos.push(newTodo);
+        console.log(newTodo.id);
+      },
+
+      editTodoById: (id: string, newTitle: string, newDesc: string) => {
+        const todoToEdit = self.todos.find((todo) => todo.id === id);
+        if (todoToEdit) {
+          todoToEdit.edit(newTitle, newDesc);
+        }
+      },
+
+      removeTodoById: (id: string) => {
+        const todoToRemove = self.todos.find((todo) => todo.id === id);
+        if (todoToRemove) {
+          destroy(todoToRemove);
+        }
       },
     };
   });
