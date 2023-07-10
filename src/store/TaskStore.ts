@@ -54,14 +54,14 @@ const Store = types
 
 // create an instance from a snapshot
 export const store = Store.create({
-  todos: [
-    {
-      id: Math.random().toString(),
-      title: "Get coffee",
-      desc: "Get a coffee",
-      status: "Todo",
-    },
-  ],
+  // todos: [
+  //   {
+  //     id: Math.random().toString(),
+  //     title: "Get coffee",
+  //     desc: "Get a coffee",
+  //     status: "Todo",
+  //   },
+  // ],
 });
 
 // listen to new snapshots
