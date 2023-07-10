@@ -1,13 +1,22 @@
 "use client";
 import { store } from "@/store/TaskStore";
 import { observer } from "mobx-react-lite";
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import TaskList from "./TaskList";
 import Modal from "./Modal";
 
 const Task = observer(() => {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [selectedTodoId, setSelectedTodoId] = useState<string | null>(null);
+  const [todos, setTodos] = useState(store.todos);
+
+  useEffect(() => {
+    const updateTodos = () => {
+      setTodos(store.todos);
+    };
+
+    store.fetchTodos();
+  }, []);
 
   const showModalHandler = (id: string) => {
     setSelectedTodoId(id);
@@ -20,8 +29,9 @@ const Task = observer(() => {
     setShowModal(false);
   };
 
-  const handleToggle = (todo: any) => {
-    todo.toggle("Done");
+  const handleToggle = (id: string, newStatus: string) => {
+    console.log(newStatus);
+    store.toggleStatus(id, newStatus);
   };
 
   const todoRemoveHandler = (id: string) => {
@@ -29,10 +39,6 @@ const Task = observer(() => {
   };
 
   const todoEditHandler = (id: string, title: string, desc: string) => {
-    // store.removeTodoById(id);
-    console.log("Editing todo with id:", id);
-    console.log("New title:", title);
-    console.log("New description:", desc);
     store.editTodoById(id, title, desc);
     closeModalHandler();
   };
@@ -48,10 +54,10 @@ const Task = observer(() => {
         </div>
       )}
       <ul className="list-none my-[2rem] mx-auto p-0 w-[40rem]">
-        {store.todos.map((todo, i) => (
+        {todos.map((todo, i) => (
           <TaskList
             key={i}
-            changeStatus={() => handleToggle(todo)}
+            changeStatus={(newStatus) => handleToggle(todo.id, newStatus)}
             title={todo.title}
             desc={todo.desc}
             status={todo.status}
