@@ -15,7 +15,7 @@ const Task = observer(() => {
       setTodos(store.todos);
     };
 
-    store.fetchTodos();
+    store.loaadTodos();
   }, []);
 
   const showModalHandler = (id: string) => {

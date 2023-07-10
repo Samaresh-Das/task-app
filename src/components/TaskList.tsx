@@ -24,7 +24,7 @@ const TaskList: React.FC<{
     };
     return (
       <li
-        className={`my-[1rem] mx-0  shadow-[0_1px_4px_rgba(0,0,0,0.2)] p-[1rem] bg-[#f7f5ef] ${
+        className={`my-[1rem] mx-0  shadow-[0_1px_4px_rgba(0,0,0,0.2)] p-[1rem] ${
           status === "To-Do"
             ? "bg-[#f5e5e3]"
             : status === "In-Progress"

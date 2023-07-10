@@ -23,6 +23,18 @@ const Store = types
     todos: types.array(Todo),
   })
   .actions((self) => {
+    const saveTodos = () => {
+      const todoJson = JSON.stringify(self.todos);
+      localStorage.setItem("todos", todoJson);
+    };
+
+    const loaadTodos = () => {
+      const todoJson = localStorage.getItem("todos");
+      if (todoJson) {
+        const tasks = JSON.parse(todoJson);
+        self.todos.replace(tasks);
+      }
+    };
     return {
       addTodo: (title: string, desc: string, status: string) => {
         const id = Math.random().toString();
@@ -30,18 +42,18 @@ const Store = types
           id,
           title,
           desc,
-          status,
+          status: "To-Do",
         });
         self.todos.push(newTodo);
         console.log(newTodo.id);
-        localStorage.setItem("todos", JSON.stringify(self.todos));
+        saveTodos();
       },
 
       editTodoById: (id: string, newTitle: string, newDesc: string) => {
         const todoToEdit = self.todos.find((todo) => todo.id === id);
         if (todoToEdit) {
           todoToEdit.edit(newTitle, newDesc);
-          localStorage.setItem("todos", JSON.stringify(self.todos));
+          saveTodos();
         }
       },
 
@@ -49,7 +61,7 @@ const Store = types
         const todoToEdit = self.todos.find((todo) => todo.id === id);
         if (todoToEdit) {
           todoToEdit.toggle(newStatus);
-          localStorage.setItem("todos", JSON.stringify(self.todos));
+          saveTodos();
         }
       },
 
@@ -57,16 +69,11 @@ const Store = types
         const todoToRemove = self.todos.find((todo) => todo.id === id);
         if (todoToRemove) {
           destroy(todoToRemove);
-          localStorage.setItem("todos", JSON.stringify(self.todos));
+          saveTodos();
         }
       },
-      fetchTodos: () => {
-        const storedTodos = localStorage?.getItem("todos");
-        if (storedTodos) {
-          const parsedTodos = JSON.parse(storedTodos);
-          self.todos.replace(parsedTodos);
-        }
-      },
+      saveTodos,
+      loaadTodos,
     };
   });
 
@@ -82,7 +89,7 @@ export const store = Store.create({
   // ],
 });
 
-store.fetchTodos(); // Fetch todos from localStorage
+// Fetch todos from localStorage
 
 // listen to new snapshots
 onSnapshot(store, (snapshot) => {
