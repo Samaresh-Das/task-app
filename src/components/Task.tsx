@@ -21,7 +21,6 @@ const Task = observer(() => {
   const showModalHandler = (id: string) => {
     setSelectedTodoId(id);
     setShowModal((prevState) => !prevState);
-    console.log(showModal);
   };
 
   const closeModalHandler = () => {
@@ -30,7 +29,6 @@ const Task = observer(() => {
   };
 
   const handleToggle = (id: string, newStatus: string) => {
-    console.log(newStatus);
     store.toggleStatus(id, newStatus);
   };
 

@@ -1,8 +1,8 @@
 "use client";
 import React, { useRef } from "react";
+import Input from "./Input";
 
 const Modal: React.FC<{
-  //   removeModal: () => void;
   getEditDetails: (id: string, title: string, desc: string) => void;
   todoId: string | null;
 }> = ({ getEditDetails, todoId }) => {
@@ -38,33 +38,23 @@ const Modal: React.FC<{
           <div className="px-6 py-6 lg:px-8">
             <form className="space-y-6" onSubmit={modalSubmitHandler}>
               <div>
-                <label
-                  htmlFor="title"
-                  className="block mb-2 text-sm font-medium "
-                >
-                  Edit title
-                </label>
-                <input
-                  type="text"
-                  name="title"
-                  id="title"
-                  className="border  text-sm rounded-lg block w-full p-2.5"
+                <Input
+                  inputId="title"
+                  labelFor="title"
+                  labelClass="block mb-2 text-sm font-medium"
+                  labelText="Edit Title"
                   ref={titleInput}
+                  inputClass="border text-sm rounded-lg w-full p-2.5"
                 />
               </div>
               <div>
-                <label
-                  htmlFor="desc"
-                  className="block mb-2 text-sm font-medium"
-                >
-                  Edit Description
-                </label>
-                <input
-                  type="text"
-                  name="desc"
-                  id="desc"
-                  className=" text-sm rounded-lg block w-full p-2.5"
+                <Input
+                  inputId="desc"
+                  labelFor="desc"
+                  labelClass="block mb-2 text-sm font-medium"
+                  labelText="Edit Description"
                   ref={descInput}
+                  inputClass="border text-sm rounded-lg w-full p-2.5"
                 />
               </div>
               <button

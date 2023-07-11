@@ -9,7 +9,6 @@ const Todo = types
   })
   .actions((self: any) => ({
     toggle(newStatus: string) {
-      console.log(newStatus);
       self.status = newStatus;
     },
     edit(newTitle: string, newDesc: string) {
@@ -45,7 +44,6 @@ const Store = types
           status: "To-Do",
         });
         self.todos.push(newTodo);
-        console.log(newTodo.id);
         saveTodos();
       },
 
@@ -78,23 +76,6 @@ const Store = types
   });
 
 // create an instance from a snapshot
-export const store = Store.create({
-  // todos: [
-  //   {
-  //     id: Math.random().toString(),
-  //     title: "Get coffee",
-  //     desc: "Get a coffee",
-  //     status: "Todo",
-  //   },
-  // ],
-});
+export const store = Store.create({});
 
-// Fetch todos from localStorage
-
-// listen to new snapshots
-onSnapshot(store, (snapshot) => {
-  // console.dir(snapshot);
-});
-
-// invoke action that modifies the tree
-// store.todos[0].toggle("In-Progress");
+onSnapshot(store, (snapshot) => {});
