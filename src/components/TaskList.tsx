@@ -20,7 +20,6 @@ const TaskList: React.FC<{
     ) => {
       setSelectedValue(event.target.value);
       changeStatus(event.target.value);
-      console.log(selectedValue);
     };
     return (
       <li
