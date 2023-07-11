@@ -1,11 +1,13 @@
 "use client";
 import { store } from "@/store/TaskStore";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import Input from "./Input";
 
 const NewTask = () => {
   const titleInput = useRef<HTMLInputElement>(null);
   const descInput = useRef<HTMLInputElement>(null);
+
+  const [error, setError] = useState<boolean>(false);
 
   const submitHandler = (e: React.FormEvent) => {
     e.preventDefault();
@@ -13,7 +15,13 @@ const NewTask = () => {
     const enteredTitle = titleInput.current!.value;
     const enteredDesc = descInput.current!.value;
 
+    if (enteredTitle.trim().length === 0) {
+      setError(true);
+      return;
+    }
+
     store.addTodo(enteredTitle, enteredDesc, "To-do");
+    setError(false);
   };
   return (
     <form onSubmit={submitHandler} className="w-[40rem] my-[2rem] mx-auto">
@@ -25,6 +33,9 @@ const NewTask = () => {
         ref={titleInput}
         inputClass="w-full text-lg py-2 px-4 rounded-md bg-gray-100 border-b-2 border-gray-700"
       />
+      {error && (
+        <p className="font-bold mb-2 block text-red-500">Title is required</p>
+      )}
       <Input
         inputId="desc"
         labelFor="desc"
