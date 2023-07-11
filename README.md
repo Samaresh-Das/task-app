@@ -1,6 +1,26 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+# Task App
+
+This is a simple task management application built with React. It allows you to add, edit, and remove tasks.
+
+## Live Demo
+
+Check out the live demo of the Task App: [Task App Demo](https://task-app-sepia.vercel.app/)
+
 ## Getting Started
+
+## Installation
+
+To run the Task App locally, follow these steps:
+
+Clone the repository:
+
+```bash
+git clone https://github.com/Samare/task-app.git
+cd task-app
+npm install
+```
 
 First, run the development server:
 
