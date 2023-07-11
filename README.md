@@ -17,7 +17,7 @@ To run the Task App locally, follow these steps:
 Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/task-app.git
+git clone https://github.com/Samare/task-app.git
 cd task-app
 npm install
 ```
