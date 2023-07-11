@@ -50,7 +50,12 @@ const Store = types
       editTodoById: (id: string, newTitle: string, newDesc: string) => {
         const todoToEdit = self.todos.find((todo) => todo.id === id);
         if (todoToEdit) {
-          todoToEdit.edit(newTitle, newDesc);
+          if (newTitle.trim() !== "") {
+            todoToEdit.title = newTitle;
+          }
+          if (newDesc.trim() !== "") {
+            todoToEdit.desc = newDesc;
+          }
           saveTodos();
         }
       },
