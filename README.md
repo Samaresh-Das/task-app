@@ -14,11 +14,13 @@ Check out the live demo of the Task App: [Task App Demo](https://task-app-sepia.
 
 To run the Task App locally, follow these steps:
 
-1. Clone the repository:
+Clone the repository:
 
-   ```bash
-   git clone https://github.com/your-username/task-app.git
-
+```bash
+git clone https://github.com/your-username/task-app.git
+cd task-app
+npm install
+```
 
 First, run the development server:
 
