@@ -1,6 +1,7 @@
 "use client";
 import { store } from "@/store/TaskStore";
 import React, { useRef } from "react";
+import Input from "./Input";
 
 const NewTask = () => {
   const titleInput = useRef<HTMLInputElement>(null);
@@ -16,23 +17,21 @@ const NewTask = () => {
   };
   return (
     <form onSubmit={submitHandler} className="w-[40rem] my-[2rem] mx-auto">
-      <label htmlFor="title" className="font-bold mb-2 block">
-        Title
-      </label>
-      <input
-        type="text"
-        id="title"
+      <Input
+        inputId="title"
+        labelFor="title"
+        labelClass="font-bold mb-2 block"
+        labelText="Title"
         ref={titleInput}
-        className="block w-full text-lg py-2 px-4 rounded-md bg-gray-100 border-b-2 border-gray-700 mb-2"
+        inputClass="w-full text-lg py-2 px-4 rounded-md bg-gray-100 border-b-2 border-gray-700"
       />
-      <label htmlFor="desc" className="font-bold mb-2 block">
-        Todo description
-      </label>
-      <input
-        type="text"
-        id="desc"
+      <Input
+        inputId="desc"
+        labelFor="desc"
+        labelClass="font-bold mb-2 block"
+        labelText="Todo description"
         ref={descInput}
-        className="block w-full text-lg py-2 px-4 rounded-md bg-gray-100 border-b-2 border-gray-700 mb-2"
+        inputClass="w-full text-lg py-2 px-4 rounded-md bg-gray-100 border-b-2 border-gray-700"
       />
       <button
         type="submit"
